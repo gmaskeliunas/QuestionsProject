@@ -4,10 +4,6 @@ from file_reader import FileReader
 from file_writer import FileWriter
 from enabled_disabled import EnabledDisabled
 from menu import Menu
-import pytest
-from unittest.mock import MagicMock
-import io
-import sys
 
 # Testing whether FileReader correctly reads the Turing users questions in data.json file
 def test_reader():
@@ -20,7 +16,7 @@ def test_reader():
     assert data[username]["FreeForm"]["What's 5+5?"]["_answer"] == "10"
     assert data[username]["FreeForm"]["What's 6+6?"]["_answer"] == "12"
 
-# Testing enable/disable functionality
+# Testing enable/disable functionality; The test fails every second time, because this function overrides the data.json file
 def test_enable_disable():
     reader = FileReader(User("Turing"))
     writer = FileWriter()

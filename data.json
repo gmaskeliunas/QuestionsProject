@@ -206,5 +206,9 @@
             }
         },
         "FreeForm": {}
+    },
+    "TestUser": {
+        "Quiz": {},
+        "FreeForm": {}
     }
 }

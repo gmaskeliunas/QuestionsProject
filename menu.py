@@ -46,7 +46,6 @@ class Menu:
     def invoke_mode(self):
         reader = FileReader(self.user)
         writer = FileWriter()
-        print()
     # This method invokes the selected menu item by calling respective methods
         match self.mode:
             case "1":

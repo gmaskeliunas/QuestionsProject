@@ -11,29 +11,31 @@ class EnabledDisabled:
             for question, detail in details.items():
                 if question_id == detail['_question_id']:
                     q_type_id = q_type
-
-        for question, details in data[username][q_type_id].items():
-            if str(details['_question_id']) == str(question_id):
-                match data[username][q_type_id][question]['active']:
-                    case True:
-                        user_inp = input(f'You are going to disable "{question}" question, which is currently enabled. Do you wish to continue (y/n)?: ')
-                        if user_inp.lower() == "exit":
+        try:
+            for question, details in data[username][q_type_id].items():
+                if str(details['_question_id']) == str(question_id):
+                    match data[username][q_type_id][question]['active']:
+                        case True:
+                            user_inp = input(f'You are going to disable "{question}" question, which is currently enabled. Do you wish to continue (y/n)?: ')
+                            if user_inp.lower() == "exit":
+                                return
+                        case False:
+                            user_inp = input(f'You are going to enable "{question}" question, which is currently disabled. Do you wish to continue (y/n)?: ')
+                            if user_inp.lower() == "exit":
+                                return
+                        case _:
+                            user_inp = ""
+                    while True:
+                        if user_inp.upper() in ["N", "NO"]:
                             return
-                    case False:
-                        user_inp = input(f'You are going to enable "{question}" question, which is currently disabled. Do you wish to continue (y/n)?: ')
-                        if user_inp.lower() == "exit":
-                            return
-                    case _:
-                        user_inp = ""
-                while True:
-                    if user_inp.upper() in ["N", "NO"]:
-                        return
-                    elif user_inp.upper() in ["Y", "YES"]:
-                        break
-                    else:
-                        user_inp = input("Please enter y or n: ")
-                data[username][q_type_id][question]['active'] = not details['active']
-                break
+                        elif user_inp.upper() in ["Y", "YES"]:
+                            break
+                        else:
+                            user_inp = input("Please enter y or n: ")
+                    data[username][q_type_id][question]['active'] = not details['active']
+                    break
+        except Exception as e:
+            print(f"An error occured (you probably have no questions added): {e}")
         # After that the program immediately writes to the file that was entered
         writer.write_file(data)
 
