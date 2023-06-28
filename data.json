@@ -4,70 +4,70 @@
             "Test": {
                 "_answer": "A",
                 "_choices": [
-                    "C",
+                    "A",
                     "B",
-                    "A"
+                    "C"
                 ],
                 "_question_id": "2",
                 "active": true,
-                "times_showed": 1,
+                "times_showed": 3,
                 "correct": 1,
                 "weight": 0.7,
-                "accuracy": 1.0
+                "accuracy": 0.33
             },
             "Test2": {
                 "_answer": "A",
                 "_choices": [
-                    "A",
-                    "B"
+                    "B",
+                    "A"
                 ],
                 "_question_id": "3",
                 "active": true,
-                "times_showed": 5,
-                "correct": 2,
-                "weight": 0.5,
-                "accuracy": 1.2
+                "times_showed": 8,
+                "correct": 3,
+                "weight": 0.4,
+                "accuracy": 0.38
             },
             "Test3": {
                 "_answer": "A",
                 "_choices": [
-                    "A",
-                    "B"
+                    "B",
+                    "A"
                 ],
                 "_question_id": "4",
                 "active": true,
-                "times_showed": 2,
-                "correct": 2,
-                "weight": 0.9,
-                "accuracy": 1.0
+                "times_showed": 8,
+                "correct": 5,
+                "weight": 0.7,
+                "accuracy": 0.62
             },
             "Test4": {
                 "_answer": "B",
                 "_choices": [
-                    "D",
-                    "B",
                     "A",
-                    "C"
+                    "C",
+                    "B",
+                    "D"
                 ],
                 "_question_id": "5",
                 "active": true,
-                "times_showed": 1,
+                "times_showed": 4,
                 "correct": 1,
-                "weight": 0.8,
-                "accuracy": 1.0
+                "weight": 0.7,
+                "accuracy": 0.25
             },
             "test5": {
                 "_answer": "A",
                 "_choices": [
-                    "A",
-                    "B"
+                    "B",
+                    "A"
                 ],
                 "_question_id": "6",
                 "active": true,
-                "times_showed": 3,
-                "correct": 1,
-                "weight": 1.3,
-                "accuracy": 0.33
+                "times_showed": 9,
+                "correct": 5,
+                "weight": 0.9,
+                "accuracy": 0.56
             }
         },
         "FreeForm": {

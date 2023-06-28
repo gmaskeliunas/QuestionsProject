@@ -37,12 +37,12 @@ class TestMode:
         if len(quiz_keys) == 0:
             print("Please select a mode which has added questions")
             TestMode.test_mode(reader, writer)
-        num_q = input(f"Please select how many questions you want to take ({len(quiz_keys)} are available): ")
         # I check if the value that the user entered is correct and doesn't go higher than the amount of questions available
         while True:
+            num_q = input(f"Please select how many questions you want to take ({len(quiz_keys)} are available): ")
             try:
                 num_q = int(num_q)
-                if num_q <= len(quiz_keys) or num_q > 0:
+                if 0 < num_q <= len(quiz_keys):
                     break
                 else:
                     continue
@@ -70,6 +70,8 @@ class TestMode:
                         correct_nr = i+1
                 data[username][questions][random_key]['times_showed'] += 1
                 random_ans = input(f"Please enter your answer\n{username}: ")
+                if random_ans.lower() == "exit":
+                    return
                 while True:
                     try:
                         ans = int(random_ans)

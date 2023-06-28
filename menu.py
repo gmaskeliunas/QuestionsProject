@@ -32,9 +32,10 @@ class Menu:
 
     @mode.setter
     def mode(self, mode):
-        if mode.lower() not in ["1", "2", "3", "4", "5", "6", "exit"]:
+        if mode not in ["1", "2", "3", "4", "5", "6", "7", "exit"]:
             print("Please select a correct mode from the menu.")
             self.display_menu()
+            self.select_mode()
         else:
             self._mode = mode
 
@@ -45,8 +46,9 @@ class Menu:
     def invoke_mode(self):
         reader = FileReader(self.user)
         writer = FileWriter()
+        print()
     # This method invokes the selected menu item by calling respective methods
-        match self.mode.lower():
+        match self.mode:
             case "1":
                 AddMode.add_questions(reader, writer)
             case "2":
@@ -70,5 +72,9 @@ class Menu:
                     elif new_user == self.user.username:
                         new_user = input("Please enter a different username: ")
                         continue
+            case "7":
+                sys.exit("The program closed successfully.")
             case "exit":
                 sys.exit("The program closed successfully.")
+            case _:
+                return
