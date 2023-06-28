@@ -1,5 +1,3 @@
-from file_reader import FileReader
-from file_writer import FileWriter
 from quiz_question import QuizQuestion
 from free_form_question import FreeFormQuestion
 from question_statistics import Statistics
