@@ -1,0 +1,31 @@
+{
+    "Turing": {
+        "Quiz": {
+            "Test": {
+                "_answer": "A",
+                "_choices": [
+                    "A",
+                    "B",
+                    "C"
+                ],
+                "_question_id": "2",
+                "active": false,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            }
+        },
+        "FreeForm": {
+            "Hello,": {
+                "_answer": "World",
+                "_question_id": "1",
+                "active": false,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            }
+        }
+    }
+}
