@@ -1,5 +1,3 @@
-from file_reader import FileReader
-
 class Statistics:
     def __init__(self, question_id):
         self.question_id = question_id
@@ -61,8 +59,9 @@ class Statistics:
             case _:
                 ...
     @staticmethod
-    def view_statistics(username):
-        data = FileReader.read_file(username)[0]
+    def view_statistics(reader):
+        username = reader.username
+        data = reader.read_file()[0]
         question_type = input(
             f'Please type what type of questions you want to view: \n1. Quiz questions\n2. Free-form questions\n3. All questions\n{username}: '
         )

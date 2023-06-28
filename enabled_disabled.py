@@ -1,12 +1,9 @@
-from file_reader import FileReader
-from file_writer import FileWriter
-
 class EnabledDisabled:
     def __init__(self) -> None:
         pass
 
     @staticmethod
-    def change_answer(username, data, question_id):
+    def change_answer(username, data, question_id, writer):
         # This method accepts the question id an changes active parameter from one
         # boolean to another if called for the specific question with a given id.
         q_type_id = None
@@ -38,11 +35,12 @@ class EnabledDisabled:
                 data[username][q_type_id][question]['active'] = not details['active']
                 break
         # After that the program immediately writes to the file that was entered
-        FileWriter.write_file(data)
+        writer.write_file(data)
 
     @staticmethod
-    def enable_disable(username):
-        data = FileReader.read_file(username)[0]
+    def enable_disable(reader, writer):
+        username = reader.username
+        data = reader.read_file()[0]
         # Here I ask for the user to enter ids of the questions he wants to enable or disable
         while True:
             try:
@@ -56,7 +54,7 @@ class EnabledDisabled:
             break
         # I call change_answer method to update the questions with given ids
         for question_id in id_list:
-            EnabledDisabled.change_answer(username, data, question_id)
+            EnabledDisabled.change_answer(username, data, question_id, writer)
         print('Successfully updated questions with id:', end = ' ')
         for question_id in id_list:
             try:

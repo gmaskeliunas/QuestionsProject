@@ -75,11 +75,136 @@
                 "_answer": "World",
                 "_question_id": "1",
                 "active": true,
+                "times_showed": 10,
+                "correct": 9,
+                "weight": 0.1,
+                "accuracy": 0.9
+            },
+            "What's 3+3?": {
+                "_answer": "6",
+                "_question_id": "7",
+                "active": true,
+                "times_showed": 10,
+                "correct": 9,
+                "weight": 0.1,
+                "accuracy": 0.9
+            },
+            "What's 4+4?": {
+                "_answer": "8",
+                "_question_id": "8",
+                "active": true,
+                "times_showed": 26,
+                "correct": 2,
+                "weight": 3.1,
+                "accuracy": 0.08
+            },
+            "What's 5+5?": {
+                "_answer": "10",
+                "_question_id": "9",
+                "active": false,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "What's 6+6?": {
+                "_answer": "12",
+                "_question_id": "10",
+                "active": true,
+                "times_showed": 9,
+                "correct": 9,
+                "weight": 0.2,
+                "accuracy": 1.0
+            },
+            "What's 2*2?": {
+                "_answer": "4",
+                "_question_id": "11",
+                "active": false,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "What's 7*2?": {
+                "_answer": "14",
+                "_question_id": "12",
+                "active": true,
+                "times_showed": 9,
+                "correct": 9,
+                "weight": 0.2,
+                "accuracy": 1.0
+            }
+        }
+    },
+    "Turing1": {
+        "Quiz": {
+            "Test3": {
+                "_answer": "A",
+                "_choices": [
+                    "A",
+                    "B"
+                ],
+                "_question_id": "1",
+                "active": true,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "Testas": {
+                "_answer": "A",
+                "_choices": [
+                    "A",
+                    "B"
+                ],
+                "_question_id": "2",
+                "active": true,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "Test6": {
+                "_answer": "1",
+                "_choices": [
+                    "1",
+                    "2"
+                ],
+                "_question_id": "3",
+                "active": true,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "Testing": {
+                "_answer": "1",
+                "_choices": [
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "_question_id": "4",
+                "active": true,
+                "times_showed": 0,
+                "correct": 0,
+                "weight": 1.0,
+                "accuracy": 0.0
+            },
+            "Hello": {
+                "_answer": "World",
+                "_choices": [
+                    "World",
+                    "world"
+                ],
+                "_question_id": "5",
+                "active": true,
                 "times_showed": 0,
                 "correct": 0,
                 "weight": 1.0,
                 "accuracy": 0.0
             }
-        }
+        },
+        "FreeForm": {}
     }
 }

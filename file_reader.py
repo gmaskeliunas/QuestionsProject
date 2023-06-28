@@ -1,20 +1,25 @@
 import json, os
 
 class FileReader:
-    @staticmethod
-    def read_file(username) -> (dict, int):
+    def __init__(self, user) -> None:
+        self.user = user
+        self.username = user.username
+
+    def read_file(self) -> (dict, int):
         filename = "data.json"
         if not os.path.isfile(filename):
             with open(filename, 'w', encoding="UTF-8") as file:
-                data = {username: {"Quiz": {}, "FreeForm": {}}}
+                data = {self.username: {"Quiz": {}, "FreeForm": {}}}
                 json.dump(data, file)
         if os.path.getsize(filename) != 0:
-            with open(filename, 'r', encoding="UTF-8") as file:
+            with open(filename, 'r+', encoding="UTF-8") as file:
                 data = json.load(file)
+                if self.username not in data.keys():
+                    data.update({self.username: {"Quiz": {}, "FreeForm": {}}})
                 max_id = 0
                 # Iterate through the nested dictionary
                 try:
-                    for section in data[username].values():
+                    for section in data[self.username].values():
                         # print(section)
                         for question in section.values():
                             if '_question_id' in question:

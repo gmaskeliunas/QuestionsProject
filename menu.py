@@ -4,6 +4,8 @@ from question_statistics import Statistics
 from enabled_disabled import EnabledDisabled
 from practice_mode import PracticeMode
 from test_mode import TestMode
+from file_reader import FileReader
+from file_writer import FileWriter
 
 class Menu:
 
@@ -40,23 +42,32 @@ class Menu:
         self.mode = user_mode
 
     def invoke_mode(self):
-# This method invokes the selected menu item by calling respective methods
+        reader = FileReader(self.user)
+        writer = FileWriter()
+    # This method invokes the selected menu item by calling respective methods
         match self.mode.lower():
             case "1":
-                AddMode.add_questions(self.user.username)
-                # self.adding_questions()
+                AddMode.add_questions(reader, writer)
             case "2":
-                Statistics.view_statistics(self.user.username)
+                Statistics.view_statistics(reader)
             case "3":
-                Statistics.view_statistics(self.user.username)
-                EnabledDisabled.enable_disable(self.user.username)
-                # self.enable_disable()
+                Statistics.view_statistics(reader)
+                EnabledDisabled.enable_disable(reader, writer)
             case "4":
-                PracticeMode.practice(self.user.username)
+                PracticeMode.practice(reader, writer)
             case "5":
-                TestMode.test_mode(self.user.username)
+                TestMode.test_mode(reader, writer)
             case "6":
-                ...
-                # self.test_mode()
+                new_user = input("Please enter a new username: ")
+                while True:
+                    if new_user.lower() == "exit":
+                        return
+                    elif new_user != self.user.username:
+                        self.user.username = new_user
+                        print(f"Successfully switched to {new_user} user!")
+                        return
+                    elif new_user == self.user.username:
+                        new_user = input("Please enter a different username: ")
+                        continue
             case "exit":
                 sys.exit("The program closed successfully.")

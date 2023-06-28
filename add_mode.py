@@ -9,8 +9,9 @@ class AddMode:
         pass
 
     @staticmethod
-    def add_questions(username):
-        data, question_id = FileReader.read_file(username)
+    def add_questions(reader, writer):
+        username = reader.username
+        data, question_id = reader.read_file()
         enabled_data = Statistics.enabled_questions(data, username, "Quiz")
         q_len = len(enabled_data[username]["Quiz"])
         enabled_data = Statistics.enabled_questions(data, username, "FreeForm")
@@ -80,7 +81,7 @@ class AddMode:
                     q_len = len(enabled_quiz_q[username]["Quiz"])
                     if q_len < 5:
                         print(f'Add {5-q_len} more question(s).')
-                    FileWriter.write_file(data)
+                    writer.write_file(data)
                     question_id += 1
                 elif adding_mode == "2":
                     user_question = input(f'Enter a free-form question (to return to menu type "exit").\n{username}: ')
@@ -116,7 +117,7 @@ class AddMode:
                     ff_len = len(enabled_data[username]["FreeForm"])
                     if ff_len < 5:
                         print(f'Add {5-ff_len} more question(s).')
-                    FileWriter.write_file(data)
+                    writer.write_file(data)
                     question_id += 1
                 elif adding_mode.lower() == "exit":
                     return

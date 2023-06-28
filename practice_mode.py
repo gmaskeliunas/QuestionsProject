@@ -1,6 +1,4 @@
 import random
-from file_reader import FileReader
-from file_writer import FileWriter
 from weights_adjust import Weights
 from question_statistics import Statistics
 
@@ -9,8 +7,9 @@ class PracticeMode:
         pass
 
     @staticmethod
-    def practice(username):
-        data = FileReader.read_file(username)[0]
+    def practice(reader, writer):
+        username = reader.username
+        data = reader.read_file()[0]
         # I ask what type of questions the user would like to practice
         question_type = input(
             f'Please type what type of questions you want to practice: \n1. Quiz questions\n2. Free-form questions\n{username}: '
@@ -40,7 +39,7 @@ class PracticeMode:
             # If the user selects type of questions that are not available the user is reprompted to select.
             if len(quiz_keys) == 0:
                 print("Please select a mode which has added questions")
-                PracticeMode.practice(username)
+                PracticeMode.practice(reader, writer)
             # I put all the weights for questions into a list and then pass it to random.choices method
             weights = [question["weight"] for question in quiz_questions.values()]
             random_key = random.choices(quiz_keys, weights=weights)[0]
@@ -74,7 +73,7 @@ class PracticeMode:
                     print(f"False! The correct answer is {random_value['_answer']}")
             # I increment by one the times showed value after the question has been printed to the console
             else:
-                random_ans = input(f"Please enter your answer.\n{username} ")
+                random_ans = input(f"Please enter your answer.\n{username}: ")
                 data[username][questions][random_key]['times_showed'] += 1
                 if random_ans.lower() == "exit":
                     return
@@ -88,4 +87,4 @@ class PracticeMode:
             data[username][questions][random_key]['accuracy'] = round(data[username][questions][random_key]['correct'] / data[username][questions][random_key]['times_showed'], 2)
             print(f"The accuracy for this question is: {data[username][questions][random_key]['accuracy']}")
             Weights.adjust_weights(data, username, random_key, questions)
-            FileWriter.write_file(data)
+            writer.write_file(data)

@@ -1,6 +1,9 @@
 import json
 
 class FileWriter:
+    def __init__(self) -> None:
+        pass
+
     @staticmethod
     def write_file(data):
         filename = "data.json"

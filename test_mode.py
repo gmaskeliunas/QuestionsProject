@@ -1,7 +1,5 @@
 import random
 from datetime import datetime
-from file_reader import FileReader
-from file_writer import FileWriter
 from question_statistics import Statistics
 
 class TestMode:
@@ -9,11 +7,12 @@ class TestMode:
         pass
 
     @staticmethod
-    def test_mode(username):
+    def test_mode(reader, writer):
         # Test mode is similar to the practice mode but I do not change the weights here..
         # If the user hasn't already entered the file_path the program prompts for the file path.
         print("\nYou entered the test mode.")
-        data = FileReader.read_file(username)[0]
+        username = reader.username
+        data = reader.read_file()[0]
         question_type = input(
             f'Please enter which test you want to take: \n1. Quiz questions\n2. Free-form questions\n{username}: '
             )
@@ -37,7 +36,7 @@ class TestMode:
             return
         if len(quiz_keys) == 0:
             print("Please select a mode which has added questions")
-            TestMode.test_mode(username)
+            TestMode.test_mode(reader, writer)
         num_q = input(f"Please select how many questions you want to take ({len(quiz_keys)} are available): ")
         # I check if the value that the user entered is correct and doesn't go higher than the amount of questions available
         while True:
@@ -94,7 +93,7 @@ class TestMode:
             # I update the metrics, but don't change the weights.
             data[username][questions][random_key]['times_showed'] += 1
             data[username][questions][random_key]['accuracy'] = round(data[username][questions][random_key]['correct'] / data[username][questions][random_key]['times_showed'], 2)
-            FileWriter.write_file(data)
+            writer.write_file(data)
         # I print out the respective message to the user based on the score
         if score == num_q:
             print(f'Congratulations, you score is perfect, you answered {score} out of {num_q} questions!')
