@@ -44,7 +44,7 @@ class PracticeMode:
             weights = [question["weight"] for question in quiz_questions.values()]
             random_key = random.choices(quiz_keys, weights=weights)[0]
             random_value = quiz_questions[random_key]
-            print('\nQuestion:',random_key)
+            print(f"\nQuestion: {random_key}")
             correct_nr = None
             if questions == "Quiz":
                 print('The choices are:')

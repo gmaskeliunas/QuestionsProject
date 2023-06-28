@@ -55,14 +55,6 @@ class EnabledDisabled:
         # I call change_answer method to update the questions with given ids
         for question_id in id_list:
             EnabledDisabled.change_answer(username, data, question_id, writer)
-        print('Successfully updated questions with id:', end = ' ')
+        print('Successfully updated questions with id(s): ')
         for question_id in id_list:
-            try:
-                if question_id == id_list[-2]:
-                    print(question_id, end = ' and ')
-                elif question_id != id_list[-1]:
-                    print(question_id, end=', ')
-                else:
-                    print(question_id, end=".\n")
-            except IndexError:
-                print(question_id, end=".\n")
+            print(question_id)

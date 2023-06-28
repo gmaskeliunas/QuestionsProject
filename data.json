@@ -93,10 +93,10 @@
                 "_answer": "8",
                 "_question_id": "8",
                 "active": true,
-                "times_showed": 26,
+                "times_showed": 27,
                 "correct": 2,
-                "weight": 3.1,
-                "accuracy": 0.08
+                "weight": 3.2,
+                "accuracy": 0.07
             },
             "What's 5+5?": {
                 "_answer": "10",
@@ -110,7 +110,7 @@
             "What's 6+6?": {
                 "_answer": "12",
                 "_question_id": "10",
-                "active": true,
+                "active": false,
                 "times_showed": 9,
                 "correct": 9,
                 "weight": 0.2,
@@ -119,10 +119,10 @@
             "What's 2*2?": {
                 "_answer": "4",
                 "_question_id": "11",
-                "active": false,
-                "times_showed": 0,
+                "active": true,
+                "times_showed": 1,
                 "correct": 0,
-                "weight": 1.0,
+                "weight": 1.1,
                 "accuracy": 0.0
             },
             "What's 7*2?": {
