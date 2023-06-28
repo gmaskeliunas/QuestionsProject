@@ -20,8 +20,12 @@ class EnabledDisabled:
                 match data[username][q_type_id][question]['active']:
                     case True:
                         user_inp = input(f'You are going to disable "{question}" question, which is currently enabled. Do you wish to continue (y/n)?: ')
+                        if user_inp.lower() == "exit":
+                            return
                     case False:
                         user_inp = input(f'You are going to enable "{question}" question, which is currently disabled. Do you wish to continue (y/n)?: ')
+                        if user_inp.lower() == "exit":
+                            return
                     case _:
                         user_inp = ""
                 while True:
@@ -43,6 +47,8 @@ class EnabledDisabled:
         while True:
             try:
                 user_input = input('Which question(s) would you like to enable/disable (e.g. "1,2,9" or "1 2 9")?\nInput: ')
+                if user_input.lower() == "exit":
+                    return
                 id_list = [num.strip() for num in user_input.replace(',', ' ').split()]
             except ValueError:
                 print('Please enter numerical value(s) (e.g. "1,2,9" or "1 2 9"): ')

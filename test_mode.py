@@ -13,7 +13,7 @@ class TestMode:
         # Test mode is similar to the practice mode but I do not change the weights here..
         # If the user hasn't already entered the file_path the program prompts for the file path.
         print("\nYou entered the test mode.")
-        data = FileReader.read_file(username)
+        data = FileReader.read_file(username)[0]
         question_type = input(
             f'Please enter which test you want to take: \n1. Quiz questions\n2. Free-form questions\n{username}: '
             )
@@ -29,7 +29,7 @@ class TestMode:
         else:
             questions = "FreeForm"
         # I assing quiz questions to the active ones only, then I prompt the user with how many questions would he like to be tested with.
-        enabled_data = Statistics.enabled_questions(data[0], username, questions)
+        enabled_data = Statistics.enabled_questions(data, username, questions)
         quiz_questions = enabled_data[username][questions]
         quiz_keys = list(quiz_questions.keys())
         if len(quiz_keys) < 5:
@@ -61,21 +61,39 @@ class TestMode:
             random_value = quiz_questions[random_key]
             # Similarly as in practice mode I print questions and answers
             print(f'\nQuestion ({i}/{num_q}):',random_key)
-            if questions == "Quiz questions":
+            correct_nr = None
+            if questions == "Quiz":
                 print('The choices are:')
-                random.shuffle(random_value['choices'])
-                for i, choice in enumerate(random_value['choices']):
+                random.shuffle(random_value['_choices'])
+                for i, choice in enumerate(random_value['_choices']):
                     print(f"{i+1}. {choice}")
-            random_ans = input("Please enter your answer: ")
-            print(f"Answer is: {random_value['answer']}")
+                    if choice == random_value['_answer']:
+                        correct_nr = i+1
+                data[username][questions][random_key]['times_showed'] += 1
+                random_ans = input(f"Please enter your answer\n{username}: ")
+                while True:
+                    try:
+                        ans = int(random_ans)
+                        if ans in [1,2,3,4,5,6]:
+                            break
+                    except Exception as e:
+                        print(e)
+                        random_ans = input(f"Please enter a number\n{username}: ")
+                        continue
+                if ans == correct_nr:
+                    score+=1
+                    data[username][questions][random_key]['correct'] += 1
+            else:
+                random_ans = input(f"Please enter your answer\n{username}: ")
+                if random_ans.lower() == random_value['_answer'].lower():
+                    score+=1
+                    data[username][questions][random_key]['correct'] += 1
+
             if random_ans.lower() == "exit":
                 break
             # I update the metrics, but don't change the weights.
-            data[username][questions][random_key]['times showed'] += 1
-            if random_ans.upper() == random_value['answer'].upper():
-                score+=1
-                data[username][questions][random_key]['correct'] += 1
-            data[username][questions][random_key]['accuracy'] = round(data[username][questions][random_key]['correct'] / data[username][questions][random_key]['times showed'], 2)
+            data[username][questions][random_key]['times_showed'] += 1
+            data[username][questions][random_key]['accuracy'] = round(data[username][questions][random_key]['correct'] / data[username][questions][random_key]['times_showed'], 2)
             FileWriter.write_file(data)
         # I print out the respective message to the user based on the score
         if score == num_q:
@@ -85,7 +103,7 @@ class TestMode:
         elif score/num_q < 0.8:
             print(f'You scored: {int(round(score/num_q*100, 2))}%')
         # I then create a file that has the original file name, only it has an added _scores.txt name+extension
-        file_name = username+"_scores.txt"
+        file_name = "scores.txt"
         # I then write to it the score and the date when the test was finished. I also note the type of test the user took
         with open(file_name, "a+", encoding="UTF-8") as file:
             current_datetime = datetime.now()

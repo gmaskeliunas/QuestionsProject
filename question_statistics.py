@@ -26,7 +26,6 @@ class Statistics:
             if data[username][q_type][question]['active'] == True:
                 # print(tmp_data[username][q_type])
                 tmp_data[username][q_type].update({question : details})
-                print(tmp_data)
         return tmp_data
 
     @staticmethod

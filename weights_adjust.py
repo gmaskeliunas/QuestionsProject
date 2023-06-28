@@ -8,7 +8,7 @@ class Weights:
         # Here I adjust weights for questions to be randomly chosen. I increase or decrease the chance to be shown
         # by a value of 0.1
         accuracy = data[username][questions][random_key]['accuracy']
-        weight = data[username][questions][random_key]['random weight']
+        weight = data[username][questions][random_key]['weight']
         max_change = 0.1
         if accuracy < 0.5:
             change = max_change
@@ -19,3 +19,5 @@ class Weights:
         # it never goes to zero and can always be printed out with a slight chance
         if weight < max_change:
             weight = max_change
+
+        data[username][questions][random_key]['weight'] = round(weight, 1)
